@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script>
+        AFRAME.registerComponent("mylink", {
+        init: function() {  
+         this.el.addEventListener("click", (e) => {              
+            window.location = this.data.href;      
+           })
+        }
+      })
+    </script>
+
+
+  </head>
+  <body>
+  <a-scene cursor="rayOrigin: mouse">
+    <a-assets>
+      <img id="imgSortida" src="assets/entragroc.png" >
+      <img id="imgFantasma" src="assets/fantasma.png" >
+      <img id="imgCasa" src="casadelsusto.jpg" >
+      <a-asset-item id="dracula" src="assets/dracula/giggles_the_clown_-_halloween.glb"></a-asset-item>
+    </a-assets>
+   
+    <a-entity camera look-controls wasd-controls="false">
+    <!-- fuseTimeout = el temps que triga en fer click des de que es posiciona sobre un objecte-->
+     <a-entity cursor="fuse: true; fuseTimeout: 2000"
+           position="0 0 -1"
+           geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+           material="color: red; shader: flat"
+           animation="property: components.material.material.color;
+                 type: color;
+                 to: white;
+                 dur: 1000;
+                 dir: alternate;
+                 loop: true">
+     </a-entity>
+    </a-entity>
+
+
+   
+   
+      <a-sky src="#imgCasa"></a-sky>
+      
+      <a-entity gltf-model="#dracula" position="0 -4.5 -5" scale="4 4 4" rotation="0 -90 0"
+                animation="property: position; dur: 4000; from: 0 -6.5 -400; to: 0 -6.5 -2; dir: alternate; loop: false">        
+      </a-entity>
+      <a-plane position="-1.5 0 1.5" src="#imgSortida" rotation="0 150 0"  transparent="true" mylink="href: https://www.google.com/search?sca_esv=c8a3b072d1e1de02&udm=2&fbs=ADc_l-a2SlE6SL3huXjdznPe49WRtCaKEbo6Bs_NfMTVbhF7kJp51sw9lA8w1LvPCSbeWmEYpeJLkxJfn1nAsPwfh5Lwjdo7dg0nhDf7gc90A7AOb60PLAjNsNg_mYTcilz1lAuoUCsqNsDaHTQxPNFS0koob-y0-nJ8xcpvF-niwuHdgmgS_9Vv6cnFwil3WLHqkxU0k723d1lUabjqbuFqyQ90MC3njw&q=antonio+lobato&sa=X&ved=2ahUKEwjM3MLt6ZeSAxXPRaQEHb-1IaUQtKgLegQIDxAB&biw=1920&bih=895&dpr=1&aic=0&safe=active&ssui=on/;"></a-plane>
+    </a-scene>
+  </body>
+</html>
